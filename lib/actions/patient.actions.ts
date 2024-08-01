@@ -48,10 +48,6 @@ export const registerPatient = async ({
   identificationDocument,
   ...patient
 }: RegisterUserParams) => {
-  const BUCKET_ID = "66a8cc0100142a5fb0cd";
-  const DATABASE_ID = "66a8cb480018eef3707c";
-  const PATIENT_COLLECTION_ID = "66a8cb81002879c1649e";
-
   try {
     let file;
     if (identificationDocument) {
@@ -74,6 +70,19 @@ export const registerPatient = async ({
 
       return parseStringify(newPatient);
     }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPatient = async (userId: string) => {
+  try {
+    const patients = await databases.listDocuments(
+      DATABASE_ID!,
+      PATIENT_COLLECTION_ID!,
+      [Query.equal("userId", userId)]
+    );
+    return parseStringify(patients.documents[0]);
   } catch (error) {
     console.log(error);
   }
