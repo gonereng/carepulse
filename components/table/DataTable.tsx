@@ -99,8 +99,8 @@ export function DataTable<TData, TValue>({
           variant="outline"
           className="shad-gray-btn"
           size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
         >
           <Image
             src="/assets/icons/arrow.svg"
